@@ -3,3 +3,8 @@ pandas
 pycaret
 plotly
 scikit-learn
+numpy
+scipy
+joblib
+category-encoders
+imbalanced-learn
