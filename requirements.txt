@@ -1,10 +1,5 @@
-streamlit
-pandas
-pycaret
-plotly
-scikit-learn
-numpy
-scipy
-joblib
-category-encoders
-imbalanced-learn
+streamlit==1.43.2
+pandas==1.5.3
+pycaret==3.3.2
+plotly=5.22.0
+scikit-learn==1.4.2
