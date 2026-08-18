@@ -26,7 +26,7 @@ The application presents interactive visualizations showing the age and educatio
 
 ### Additional Group Statistics
 
-Additional visualizations show the distribution of favorite places and gender within the assigned cluster.
+Additional visualizations show the distribution of favorite animals, favorite places, and gender within the assigned cluster.
 
 ![Additional Group Statistics](screenshots/screenshot_statistics_2.png)
 
@@ -44,7 +44,15 @@ The user provides information about:
 
 The application converts the responses into a Pandas DataFrame and passes them to a trained clustering pipeline.
 
-The model assigns the user to one of the predefined clusters. The application then displays the cluster name, its description, the number of users in the same cluster, and visual statistics describing the group.
+The model assigns the user to one of the predefined clusters. The application then displays:
+
+- the name and description of the assigned cluster
+- the number of users in the same cluster
+- the percentage of participants belonging to the same cluster
+- the total number of participants
+- visual statistics describing the group
+
+Users can also save their survey responses to the dataset directly from the application.
 
 The clustering workflow was developed using PyCaret.
 
@@ -54,6 +62,10 @@ The clustering workflow was developed using PyCaret.
 - User cluster prediction
 - Cluster names and descriptions
 - Number of users in the assigned cluster
+- Percentage of users similar to the current user
+- Total number of participants
+- Saving new survey responses to the dataset
+- Confirmation message after saving responses
 - Age distribution visualization
 - Education level distribution
 - Favorite animals distribution
@@ -88,18 +100,25 @@ The application combines a Streamlit user interface with a trained clustering pi
       ▼
     Pandas DataFrame
       │
-      ▼
-    PyCaret Clustering Pipeline
+      ├──► Cluster Prediction
       │
-      ▼
-    Predicted Cluster
-      │
-      ├──► Cluster Name & Description
-      │
-      └──► Users from the Same Cluster
-                 │
-                 ▼
-           Plotly Visualizations
+      └──► Optional Dataset Update
+                    │
+                    ▼
+              CSV Dataset
+                    │
+                    ▼
+          PyCaret Clustering Pipeline
+                    │
+                    ▼
+              Predicted Cluster
+                    │
+                    ├──► Cluster Name & Description
+                    │
+                    └──► Users from the Same Cluster
+                               │
+                               ▼
+                         Plotly Visualizations
 
 ## 🤖 Machine Learning Layer
 
@@ -161,8 +180,11 @@ The JSON file contains information describing the characteristics of each cluste
 4. The application loads the corresponding cluster name and description.
 5. The dataset is processed with the same clustering model.
 6. Users belonging to the predicted cluster are selected.
-7. The application calculates the number of users in the group.
-8. Plotly visualizations present the characteristics of the group.
+7. The application calculates the number and percentage of users in the same cluster.
+8. The application displays the total number of participants.
+9. The user can optionally save their responses to the dataset.
+10. The dataset processing cache is cleared after a new response is saved.
+11. Plotly visualizations present the characteristics of the group.
 
 ## 🔍 Example Workflow
 
@@ -183,11 +205,15 @@ The result includes:
 - cluster name
 - cluster description
 - number of users in the cluster
+- percentage of participants belonging to the cluster
+- total number of participants
 - age distribution
 - education distribution
 - favorite animals distribution
 - favorite place distribution
 - gender distribution
+
+The user can also save their responses to the dataset using the button in the sidebar.
 
 ## 🚀 Installation
 

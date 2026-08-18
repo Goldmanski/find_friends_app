@@ -10,6 +10,8 @@ DATA = 'welcome_survey_simple_v1.csv'
 
 CLUSTER_NAMES_AND_DESCRIPTIONS = 'welcome_survey_cluster_names_and_descriptions_v1.json'
 
+if "save_message" not in st.session_state:
+    st.session_state.save_message = False
 
 @st.cache_data
 def get_model():
@@ -47,6 +49,24 @@ with st.sidebar:
         }
     ])
 
+    if st.button("Zapisz moje odpowiedzi do datasetu"):
+        person_df.to_csv(
+            DATA,
+            sep=";",
+            mode="a",
+            header=False,
+            index=False,
+        )
+
+        get_all_participants.clear()
+
+        st.session_state.save_message = True
+        st.rerun()
+
+    if st.session_state.save_message:
+        st.success("Twoje odpowiedzi zostały zapisane.")
+        st.session_state.save_message = False
+
 model = get_model()
 all_df = get_all_participants()
 cluster_names_and_descriptions = get_cluster_names_and_descriptions()
@@ -54,10 +74,31 @@ cluster_names_and_descriptions = get_cluster_names_and_descriptions()
 predicted_cluster_id = predict_model(model, data=person_df)["Cluster"].values[0]
 predicted_cluster_data = cluster_names_and_descriptions[predicted_cluster_id]
 
+st.title("👥 Znajdź swoją grupę")
+st.caption("Prosta segmentacja użytkowników na podstawie ankiety")
+
 st.header(f"Najbliżej Ci do grupy {predicted_cluster_data['name']}")
 st.markdown(predicted_cluster_data['description'])
+
 same_cluster_df = all_df[all_df["Cluster"] == predicted_cluster_id]
-st.metric("Liczba twoich znajomych", len(same_cluster_df))
+
+similar_users = len(same_cluster_df)
+similarity_percentage = similar_users / len(all_df) * 100
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.metric(
+        "Osoby podobne do Ciebie",
+        similar_users,
+        f"{similarity_percentage:.0f}% uczestników",
+    )
+
+with col2:
+    st.metric(
+        "Liczba uczestników",
+        len(all_df),
+    )
 
 st.header("Osoby z grupy")
 fig = px.histogram(same_cluster_df.sort_values("age"), x="age")
