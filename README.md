@@ -4,9 +4,11 @@ Machine Learning application that groups users with similar profiles using clust
 
 ## 🚀 Live Demo
 
-https://find-friends-app-goldmanski.streamlit.app/
+[https://find-friends-app-goldmanski.streamlit.app](https://find-friends-app-goldmanski.streamlit.app)
 
 The application allows users to complete a short survey and find the user group that is most similar to their profile.
+
+---
 
 ## 📸 Screenshots
 
@@ -127,7 +129,7 @@ The JSON file contains information describing the characteristics of each cluste
 
 ## 📁 Project Structure
 
-    find_friends_v3/
+    find_friends_app/
     │
     ├── screenshots/
     │   ├── screenshot_main.png
