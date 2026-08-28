@@ -116,13 +116,11 @@ The application combines a Streamlit user interface with a trained clustering pi
                     ├──► Cluster Name & Description
                     │
                     └──► Users from the Same Cluster
-                               │
-                               ▼
-                         Plotly Visualizations
+                            │
+                            ▼
+                        Plotly Visualizations
 
 ## 🤖 Machine Learning Layer
-
-The application uses a trained clustering pipeline created with PyCaret.
 
 The model processes the following user attributes:
 
@@ -144,7 +142,9 @@ Each cluster has a human-readable name and description stored in:
 
     welcome_survey_cluster_names_and_descriptions_v1.json
 
-The JSON file contains information describing the characteristics of each cluster.
+The cluster names and descriptions were generated using an LLM based on the characteristics of the clusters identified by the Machine Learning model.
+
+The JSON file is used by the application to present a human-readable interpretation of the predicted cluster.
 
 ## 📁 Project Structure
 
@@ -155,6 +155,7 @@ The JSON file contains information describing the characteristics of each cluste
     │   ├── screenshot_statistics.png
     │   └── screenshot_statistics_2.png
     ├── app.py
+    ├── find_friends_clustering.ipynb
     ├── welcome_survey_simple_v1.csv
     ├── welcome_survey_clustering_pipeline_v1.pkl
     ├── welcome_survey_cluster_names_and_descriptions_v1.json
@@ -165,6 +166,7 @@ The JSON file contains information describing the characteristics of each cluste
 ### Main Components
 
 - `app.py` — Streamlit application and user interface
+- `find_friends_clustering.ipynb` — clustering workflow and model development
 - `welcome_survey_simple_v1.csv` — source user survey dataset
 - `welcome_survey_clustering_pipeline_v1.pkl` — trained clustering pipeline
 - `welcome_survey_cluster_names_and_descriptions_v1.json` — cluster names and descriptions
