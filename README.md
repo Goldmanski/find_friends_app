@@ -12,21 +12,15 @@ The application allows users to complete a short survey and find the user group 
 
 ## 📸 Screenshots
 
-### Main Application
+### User Input & Group Statistics
 
-The main screen allows users to provide information about themselves and receive a cluster assignment together with information describing the group.
+Users complete a short survey with information about their age, education level, favorite animals, favorite place, and gender. The application uses these responses to assign the user to the most similar cluster and presents the cluster's characteristics, including its name, description, size, and age distribution.
 
-![Main Application](screenshots/screenshot_main.png)
-
-### Group Statistics
-
-The application presents interactive visualizations showing the age and education distribution of users belonging to the assigned cluster.
-
-![Group Statistics](screenshots/screenshot_statistics.png)
+![User Input & Group Statistics](screenshots/screenshot_statistics.png)
 
 ### Additional Group Statistics
 
-Additional visualizations show the distribution of favorite animals, favorite places, and gender within the assigned cluster.
+The application provides additional visualizations describing the assigned cluster, including the distributions of favorite animals, favorite places, and gender.
 
 ![Additional Group Statistics](screenshots/screenshot_statistics_2.png)
 
@@ -151,7 +145,6 @@ The JSON file is used by the application to present a human-readable interpretat
     find_friends_app/
     │
     ├── screenshots/
-    │   ├── screenshot_main.png
     │   ├── screenshot_statistics.png
     │   └── screenshot_statistics_2.png
     ├── app.py
