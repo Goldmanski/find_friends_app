@@ -1,4 +1,6 @@
-streamlit
+streamlit==1.43.2
 pandas
-pycaret
-plotly
+pycaret==3.3.2
+plotly==5.22.0
+scikit-learn==1.4.2
+numpy==1.26.4
